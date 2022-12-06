@@ -66,13 +66,8 @@ public class Delivery  {
     public void onPostPersist(){
 
 
-        Picked picked = new Picked(this);
-        picked.publishAfterCommit();
 
 
-
-        Delivered delivered = new Delivered(this);
-        delivered.publishAfterCommit();
 
     }
     @PreUpdate
@@ -87,10 +82,18 @@ public class Delivery  {
 
 
     public void pick(PickCommand pickCommand){
+        setRiderId(pickCommand.getRiderId());
+        setAddress(pickCommand.getAddress());
         setStatus("배송중");
+        Picked picked = new Picked(this);
+        picked.publishAfterCommit();
+
     }
     public void confirmDelivered(ConfirmDeliveredCommand confirmDeliveredCommand){
         setStatus("배송확정");
+        Delivered delivered = new Delivered(this);
+        delivered.publishAfterCommit();
+
     }
 
     public static void addDelivery(OrderPlaced orderPlaced){

@@ -74,23 +74,15 @@ public class FoodCooking  {
     public void onPostPersist(){
 
 
-        OrderAccepted orderAccepted = new OrderAccepted(this);
-        orderAccepted.publishAfterCommit();
 
 
 
-        OrderRejected orderRejected = new OrderRejected(this);
-        orderRejected.publishAfterCommit();
 
 
 
-        CookStarted cookStarted = new CookStarted(this);
-        cookStarted.publishAfterCommit();
 
 
 
-        CookFinished cookFinished = new CookFinished(this);
-        cookFinished.publishAfterCommit();
 
     }
 
@@ -103,15 +95,24 @@ public class FoodCooking  {
 
     public void accept(AcceptCommand acceptCommand){
         setStatus("접수됨");
+        OrderAccepted orderAccepted = new OrderAccepted(this);
+        orderAccepted.publishAfterCommit();
         
     }
     public void reject(RejectCommand rejectCommand){
+        OrderRejected orderRejected = new OrderRejected(this);
+        orderRejected.publishAfterCommit();
+
         setStatus("거부됨");
     }
     public void start(StartCommand startCommand){
+        CookStarted cookStarted = new CookStarted(this);
+        cookStarted.publishAfterCommit();
         setStatus("요리시작");
     }
     public void finish(FinishCommand finishCommand){
+        CookFinished cookFinished = new CookFinished(this);
+        cookFinished.publishAfterCommit();
         setStatus("요리완료");
     }
 
@@ -154,6 +155,7 @@ public class FoodCooking  {
         
         repository().findByOrderId(paid.getOrderId()).ifPresent(foodCooking->{
             foodCooking.setStatus("결재완료"); // do something
+            System.out.println(">>>> foodCooking.getStatus() : " + foodCooking.getStatus());
             repository().save(foodCooking);
          });
         

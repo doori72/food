@@ -12,7 +12,7 @@ import lombok.Data;
 public class Mypage {
 
         @Id
-        //@GeneratedValue(strategy=GenerationType.AUTO)
+        @GeneratedValue(strategy=GenerationType.AUTO)
         private Long id;
         private String status;
         private String orderId;

@@ -28,10 +28,6 @@ spring:
           uri: http://localhost:8085
           predicates:
             - Path=/customers/**, /mypages/**
-        - id: frontend
-          uri: http://localhost:8080
-          predicates:
-            - Path=/**
       globalcors:
         corsConfigurations:
           '[/**]':

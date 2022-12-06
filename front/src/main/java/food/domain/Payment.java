@@ -83,11 +83,12 @@ public class Payment  {
     }
     public static void pay(OrderPlaced orderPlaced){
 
-        /** Example 1:  new item 
+        /** Example 1:  new item */
         Payment payment = new Payment();
+        payment.setOrderId(String.valueOf(orderPlaced.getId()));
         repository().save(payment);
 
-        */
+        
 
         /** Example 2:  finding and process
         

@@ -81,6 +81,7 @@ public class Review  {
 
     }
 
+
     public static ReviewRepository repository(){
         ReviewRepository reviewRepository = FrontApplication.applicationContext.getBean(ReviewRepository.class);
         return reviewRepository;

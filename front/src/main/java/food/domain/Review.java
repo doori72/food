@@ -62,6 +62,9 @@ public class Review  {
         //    .getOrder(/** mapping value needed */);
 
     }
+    @PreRemove
+    public void onPreRemove(){
+    }
 
     public static ReviewRepository repository(){
         ReviewRepository reviewRepository = FrontApplication.applicationContext.getBean(ReviewRepository.class);

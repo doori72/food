@@ -39,6 +39,7 @@
                     v-else
             >
                 Review
+                DeleteReview
             </v-btn>
             <v-btn
                     color="deep-purple lighten-2"

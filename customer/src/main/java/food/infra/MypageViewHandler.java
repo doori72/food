@@ -136,7 +136,7 @@ public class MypageViewHandler {
                 List<Mypage> mypageList = mypageRepository.findByOrderId(picked.getOrderId());
                 for(Mypage mypage : mypageList){
                     // view 객체에 이벤트의 eventDirectValue 를 set 함
-                    mypage.setStatus("배송시작");
+                    mypage.setStatus("배송중");
                 // view 레파지 토리에 save
                 mypageRepository.save(mypage);
                 }

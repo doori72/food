@@ -87,17 +87,24 @@ public class Delivery  {
 
 
     public void pick(PickCommand pickCommand){
+        setStatus("배송중");
     }
     public void confirmDelivered(ConfirmDeliveredCommand confirmDeliveredCommand){
+        setStatus("배송확정");
     }
 
     public static void addDelivery(OrderPlaced orderPlaced){
 
-        /** Example 1:  new item 
+        /** Example 1:  new item  */
         Delivery delivery = new Delivery();
+        delivery.setAddress(orderPlaced.getAddress());
+        delivery.setCustomerId(orderPlaced.getCustomerId());
+        delivery.setFoodId(orderPlaced.getFoodId());
+        delivery.setOrderId(String.valueOf(orderPlaced.getId()));
+        delivery.setStatus("배송대기");
         repository().save(delivery);
 
-        */
+       
 
         /** Example 2:  finding and process
         
@@ -120,16 +127,16 @@ public class Delivery  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process */
         
-        repository().findById(cookFinished.get???()).ifPresent(delivery->{
+        repository().findByOrderId(cookFinished.getOrderId()).ifPresent(delivery->{
             
-            delivery // do something
+            delivery.setStatus("배송가능"); // do something
             repository().save(delivery);
 
 
          });
-        */
+        
 
         
     }

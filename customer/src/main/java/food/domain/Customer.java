@@ -53,16 +53,15 @@ public class Customer  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process */
         
-        repository().findById(reviewWritten.get???()).ifPresent(customer->{
-            
-            customer // do something
+        repository().findById(Long.valueOf(reviewWritten.getCustomerId())).ifPresent(customer->{
+            customer.setCouponCnt(customer.getCouponCnt() + 1); // add coupon
             repository().save(customer);
 
 
          });
-        */
+        
 
         
     }
@@ -71,29 +70,28 @@ public class Customer  {
         /** Example 1:  new item 
         Customer customer = new Customer();
         repository().save(customer);
-
         */
-
-        /** Example 2:  finding and process
         
-        repository().findById(reviewDeleted.get???()).ifPresent(customer->{
-            
-            customer // do something
+
+        /** Example 2:  finding and process */
+        
+        repository().findById(Long.valueOf(reviewDeleted.getCustomerId())).ifPresent(customer->{
+            customer.setCouponCnt(customer.getCouponCnt() - 1); // remove coupon
             repository().save(customer);
-
-
          });
-        */
+        
 
         
     }
     public static void addCustomer(OrderPlaced orderPlaced){
 
-        /** Example 1:  new item 
+        /** Example 1:  new item */
         Customer customer = new Customer();
+        customer.setCustomerId(orderPlaced.getCustomerId());
+        customer.setCouponCnt(1);   // 가입 쿠폰 증정
         repository().save(customer);
 
-        */
+        
 
         /** Example 2:  finding and process
         

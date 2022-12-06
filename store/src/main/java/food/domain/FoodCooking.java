@@ -102,21 +102,32 @@ public class FoodCooking  {
 
 
     public void accept(AcceptCommand acceptCommand){
+        setStatus("접수됨");
+        
     }
     public void reject(RejectCommand rejectCommand){
+        setStatus("거부됨");
     }
     public void start(StartCommand startCommand){
+        setStatus("요리시작");
     }
     public void finish(FinishCommand finishCommand){
+        setStatus("요리완료");
     }
 
     public static void addOrder(OrderPlaced orderPlaced){
 
-        /** Example 1:  new item 
+        /** Example 1:  new item */
         FoodCooking foodCooking = new FoodCooking();
+        foodCooking.setAddress(orderPlaced.getAddress());
+        foodCooking.setCustomerId(orderPlaced.getCustomerId());
+        foodCooking.setFoodId(orderPlaced.getFoodId());
+        foodCooking.setOrderId(String.valueOf(orderPlaced.getId()));
+        foodCooking.setStatus("미결재");
+        foodCooking.setStoreId(orderPlaced.getStoreId());
         repository().save(foodCooking);
 
-        */
+        
 
         /** Example 2:  finding and process
         
@@ -139,16 +150,13 @@ public class FoodCooking  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process */
         
-        repository().findById(paid.get???()).ifPresent(foodCooking->{
-            
-            foodCooking // do something
+        repository().findByOrderId(paid.getOrderId()).ifPresent(foodCooking->{
+            foodCooking.setStatus("결재완료"); // do something
             repository().save(foodCooking);
-
-
          });
-        */
+        
 
         
     }

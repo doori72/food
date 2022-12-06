@@ -55,8 +55,10 @@ public class Customer  {
 
         /** Example 2:  finding and process */
         
-        repository().findById(Long.valueOf(reviewWritten.getCustomerId())).ifPresent(customer->{
-            customer.setCouponCnt(customer.getCouponCnt() + 1); // add coupon
+        repository().findByCustomerId(reviewWritten.getCustomerId()).ifPresent(customer->{
+            int couponCnt = customer.getCouponCnt();
+
+            customer.setCouponCnt(couponCnt + 1); // add coupon
             repository().save(customer);
 
 
@@ -75,7 +77,7 @@ public class Customer  {
 
         /** Example 2:  finding and process */
         
-        repository().findById(Long.valueOf(reviewDeleted.getCustomerId())).ifPresent(customer->{
+        repository().findByCustomerId(reviewDeleted.getCustomerId()).ifPresent(customer->{
             customer.setCouponCnt(customer.getCouponCnt() - 1); // remove coupon
             repository().save(customer);
          });

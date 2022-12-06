@@ -45,24 +45,39 @@ public class Review  {
     private String content;
 
    
+
     @PrePersist
-    public void onPrePersis() {
+    public void onPrePersist() {
         // req/res 형식으로 오더정보조회 후 해당 오더의 고객ID 설정
         food.external.Order order =
            FrontApplication.applicationContext.getBean(food.external.OrderService.class)
            .getOrder(Long.valueOf(getOrderId()));
         
         setCustomerId(order.getCustomerId());
+
+        ReviewWritten reviewWritten = new ReviewWritten(this);
+        reviewWritten.publishAfterCommit();
     }
 
     @PostPersist
     public void onPostPersist(){
-        ReviewWritten reviewWritten = new ReviewWritten(this);
-        reviewWritten.publishAfterCommit();
+    }
+
+    @PreRemove
+    public void onPreRemove() {
+        // req/res 형식으로 오더정보조회 후 해당 오더의 고객ID 설정
+        food.external.Order order =
+           FrontApplication.applicationContext.getBean(food.external.OrderService.class)
+           .getOrder(Long.valueOf(getOrderId()));
+        
+        setCustomerId(order.getCustomerId());
 
         ReviewDeleted reviewDeleted = new ReviewDeleted(this);
         reviewDeleted.publishAfterCommit();
+    }
 
+    @PostRemove
+    public void onPostRemove() {
 
     }
 

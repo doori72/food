@@ -77,6 +77,11 @@ public class Order  {
     }
     @PreRemove
     public void onPreRemove(){
+        // Get request from FoodCooking
+        //food.external.FoodCooking foodCooking =
+        //    Application.applicationContext.getBean(food.external.FoodCookingService.class)
+        //    .getFoodCooking(/** mapping value needed */);
+
     }
 
     public static OrderRepository repository(){

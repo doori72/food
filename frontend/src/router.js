@@ -18,6 +18,8 @@ import FoodCookingDetail from "./components/listers/FoodCookingDetail"
 import DeliveryManager from "./components/listers/DeliveryCards"
 import DeliveryDetail from "./components/listers/DeliveryDetail"
 
+import DeliveryListView from "./components/DeliveryListView"
+import DeliveryListViewDetail from "./components/DeliveryListViewDetail"
 import NoticeManager from "./components/listers/NoticeCards"
 import NoticeDetail from "./components/listers/NoticeDetail"
 
@@ -84,6 +86,16 @@ export default new Router({
                 component: DeliveryDetail
             },
 
+            {
+                path: '/deliveryLists',
+                name: 'DeliveryListView',
+                component: DeliveryListView
+            },
+            {
+                path: '/deliveryLists/:id',
+                name: 'DeliveryListViewDetail',
+                component: DeliveryListViewDetail
+            },
             {
                 path: '/notices',
                 name: 'NoticeManager',

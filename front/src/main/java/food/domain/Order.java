@@ -64,7 +64,7 @@ public class Order  {
 
     @PostPersist
     public void onPostPersist(){
-
+        setStatus("주문등록");
 
         OrderPlaced orderPlaced = new OrderPlaced(this);
         orderPlaced.publishAfterCommit();

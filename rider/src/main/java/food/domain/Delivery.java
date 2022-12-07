@@ -143,6 +143,27 @@ public class Delivery  {
 
         
     }
+    public static void cancelDelivery(CancelPaid cancelPaid){
+
+        /** Example 1:  new item 
+        Delivery delivery = new Delivery();
+        repository().save(delivery);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(cancelPaid.get???()).ifPresent(delivery->{
+            
+            delivery // do something
+            repository().save(delivery);
+
+
+         });
+        */
+
+        
+    }
 
 
 }

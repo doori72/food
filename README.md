@@ -138,7 +138,7 @@ public void wheneverCookFinished_UpdateStatus(@Payload CookFinished cookFinished
 ---
 
 2. CQRS
-- Mypage를 통한 오더상태 업데이트 정보 조회
+> Mypage를 통한 오더상태 업데이트 정보 조회
 * 결재됨
 ---
 ![CQRS_결재됨](https://user-images.githubusercontent.com/8790281/206218505-f48277b3-0fbd-4307-9b83-42ba20f1cbe3.png)

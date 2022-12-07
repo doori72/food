@@ -77,6 +77,10 @@ public class Order  {
     }
     @PreRemove
     public void onPreRemove(){
+        if (status.equals("요리시작") || status.equals("요리완료")) {
+            System.out.println(">>>> 요리가 시작되기 전에만 주문취소가 가능합니다.");
+            return;
+        }
     }
 
     public static OrderRepository repository(){
@@ -98,16 +102,16 @@ public class Order  {
 
         */
 
-        /** Example 2:  finding and process
+        /** Example 2:  finding and process */
         
-        repository().findById(cookFinished.get???()).ifPresent(order->{
+        repository().findById(Long.valueOf(cookFinished.getOrderId())).ifPresent(order->{
             
-            order // do something
+            order.setStatus(cookFinished.getStatus()); // 요리 상태 업데이트
             repository().save(order);
 
 
          });
-        */
+        
 
         
     }

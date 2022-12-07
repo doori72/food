@@ -92,7 +92,7 @@
 
 # 체크포인트
 1. Saga (Pub / Sub)
-- kafka를 통한 Pub/Sub 비동기 통신
+> kafka를 통한 Pub/Sub 비동기 통신
 * Publish 예제 코드
 ```
 @PostPersist
@@ -157,7 +157,7 @@ public void wheneverCookFinished_UpdateStatus(@Payload CookFinished cookFinished
 ---
  
 3. Compensation / Correlation
-* 고객이 작성한 리뷰 삭제 시 부여했던 쿠폰 개수 차감
+> 고객이 작성한 리뷰 삭제 시 부여했던 쿠폰 개수 차감
 ```
 public static void removeCoupon(ReviewDeleted reviewDeleted){
     /** 고객은 리뷰 삭제 시 기존 쿠폰에서 1개 차감한다. */
@@ -173,7 +173,7 @@ public static void removeCoupon(ReviewDeleted reviewDeleted){
 ---
 ![리뷰삭제_쿠폰삭제](https://user-images.githubusercontent.com/8790281/206219482-33091545-db87-49c1-a36e-7a677cb1a1d0.png)
 ---
-* 요리시작 또는 요리종료 상태인 경우 주문취소 불가, 그 외의 상태는 주문취소 가능 
+> 요리시작 또는 요리종료 상태인 경우 주문취소 불가, 그 외의 상태는 주문취소 가능 
 ```
 @PreRemove
 public void onPreRemove(){
@@ -191,7 +191,7 @@ public void onPreRemove(){
 ---
 
 4. Request / Response
-- 리뷰 저장 전(onPrePersist메소드)에 해당 오더번호의 고객ID를 동기식 REST방식으로 호출하며 리뷰 저장 후 해당 고객에게 쿠폰 증정
+> 리뷰 저장 전(onPrePersist메소드)에 해당 오더번호의 고객ID를 동기식 REST방식으로 호출하며 리뷰 저장 후 해당 고객에게 쿠폰 증정
 ```
 @PrePersist
 public void onPrePersist() {
@@ -208,12 +208,12 @@ public void onPrePersist() {
 ```
 
 5. Circuit Breaker
-- 리뷰 작성 시 고객의 ID를 알기 위해 해당 오더정보 조회를 req/res 방식으로 호출하며, 조회 시 특정 시간 이상 경과할 경우 서킷 브레이크 발생
+> 리뷰 작성 시 고객의 ID를 알기 위해 해당 오더정보 조회를 req/res 방식으로 호출하며, 조회 시 특정 시간 이상 경과할 경우 서킷 브레이크 발생
 ---
 ![req_res조회](https://user-images.githubusercontent.com/8790281/206234523-563308ad-40b4-4463-b90d-d400a544b397.png)
 ---
 
-- front서비스의 application.yml의 hystrix enable은 true로 timeout은 500ms로 설정
+* front서비스의 application.yml의 hystrix enable은 true로 timeout은 500ms로 설정
 ```
 feign:
   hystrix:
@@ -223,7 +223,7 @@ hystrix:
     default:
       execution.isolation.thread.timeoutInMilliseconds: 500
 ```
-- 오더 객체 로드 시 강제 delay 발생(랜덤으로 400ms에서 600ms 미만의 초)
+* 오더 객체 로드 시 강제 delay 발생(랜덤으로 400ms에서 600ms 미만의 초)
 ```
 @PostLoad
 public void makeDelay(){
@@ -244,7 +244,7 @@ public void makeDelay(){
 ---
 
 6. Gateway / Ingress
-- gateway 서비스 8088 포트를 통해 브라우저에서 path만 변경 후 각 서비스로 정상 라우팅 확인
+> gateway 서비스 8088 포트를 통해 브라우저에서 path만 변경 후 각 서비스로 정상 라우팅 확인
 * 8081 포트 (front 서비스)
 ---
 ![게이트웨이_8081](https://user-images.githubusercontent.com/8790281/206215850-a3f6dd4d-f96f-4426-9229-7fc33e316c0a.png)

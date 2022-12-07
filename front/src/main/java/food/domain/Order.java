@@ -90,6 +90,27 @@ public class Order  {
 
 
 
+    public static void updateStatus(CookFinished cookFinished){
+
+        /** Example 1:  new item 
+        Order order = new Order();
+        repository().save(order);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(cookFinished.get???()).ifPresent(order->{
+            
+            order // do something
+            repository().save(order);
+
+
+         });
+        */
+
+        
+    }
 
 
 }

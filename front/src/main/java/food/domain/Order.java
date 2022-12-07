@@ -115,6 +115,25 @@ public class Order  {
 
         
     }
+    public static void updateStatus(CookStarted cookStarted){
+
+        /** Example 1:  new item 
+        Order order = new Order();
+        repository().save(order);
+
+        */
+
+        /** Example 2:  finding and process
+        */
+        repository().findById(Long.valueOf(cookStarted.getOrderId())).ifPresent(order->{
+            
+            order.setStatus(cookStarted.getStatus()); // 요리 상태 업데이트
+            repository().save(order);
+
+
+         });
+        
+    }
 
 
 }

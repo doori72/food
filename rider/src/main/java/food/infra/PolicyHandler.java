@@ -55,17 +55,18 @@ public class PolicyHandler{
         
 
     }
+
     @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='CancelPaid'")
-    public void wheneverCancelPaid_UpdateDelivery(@Payload CancelPaid cancelPaid){
+    public void wheneverCancelPaid_CancelDelivery(@Payload CancelPaid cancelPaid){
 
         CancelPaid event = cancelPaid;
-        System.out.println("\n\n##### listener UpdateDelivery : " + cancelPaid + "\n\n");
+        System.out.println("\n\n##### listener CancelDelivery : " + cancelPaid + "\n\n");
 
 
         
 
         // Sample Logic //
-        Delivery.updateDelivery(event);
+        Delivery.cancelDelivery(event);
         
 
         

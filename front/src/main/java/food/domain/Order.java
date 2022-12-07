@@ -77,11 +77,6 @@ public class Order  {
     }
     @PreRemove
     public void onPreRemove(){
-        // Get request from FoodCooking
-        //food.external.FoodCooking foodCooking =
-        //    Application.applicationContext.getBean(food.external.FoodCookingService.class)
-        //    .getFoodCooking(/** mapping value needed */);
-
     }
 
     public static OrderRepository repository(){
@@ -95,6 +90,27 @@ public class Order  {
 
 
 
+    public static void updateStatus(CookFinished cookFinished){
+
+        /** Example 1:  new item 
+        Order order = new Order();
+        repository().save(order);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(cookFinished.get???()).ifPresent(order->{
+            
+            order // do something
+            repository().save(order);
+
+
+         });
+        */
+
+        
+    }
 
 
 }

@@ -1,21 +1,19 @@
 package food.domain;
 
-import food.domain.*;
 import food.infra.AbstractEvent;
-import lombok.*;
+import lombok.Data;
 import java.util.*;
+
+
 @Data
-@ToString
 public class CookFinished extends AbstractEvent {
 
     private Long id;
     private String status;
     private String foodId;
     private String orderId;
-    private Object options;
+    private List<String> options;
     private String storeId;
     private String customerId;
     private String address;
 }
-
-

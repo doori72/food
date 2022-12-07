@@ -1,9 +1,12 @@
-package food.external;
+package food.domain;
 
-import lombok.Data;
-import java.util.Date;
+import food.domain.*;
+import food.infra.AbstractEvent;
+import lombok.*;
+import java.util.*;
 @Data
-public class FoodCooking {
+@ToString
+public class CookFinished extends AbstractEvent {
 
     private Long id;
     private String status;
